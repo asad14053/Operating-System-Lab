@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main()
+{
+
+    ll x,y,z,a,b,c,n;
+    cout<<"number of process :"<<endl;
+    while(cin>>n)
+    {
+        ll sm=0;
+        vector<pair<ll,ll> >v;
+        for(int i=0; i<n; i++)
+        {
+            cout<<"Process :"<<i+1<<" burst time: ";
+            cin>>y;
+            v.push_back(make_pair(y,i+1));
+        }
+        ll sm1=0;
+        for(int i=0; i<n; i++)
+        {
+            cout<<"process "<<v[i].second<<"     burst time : "<<v[i].first<<"     waiting time: "<<sm<<endl;
+            if(i!=n-1)
+            {
+                sm+=v[i].first;
+                sm1+=sm;
+            }
+
+        }
+        cout<<"average waiting time : "<<sm1/(double)n<<endl;
+
+    }
+}

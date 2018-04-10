@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+bool cmp(pair<ll,pair<ll,ll> > x,pair<ll,pair<ll,ll> > y)
+{
+
+    if(x.first<y.first)
+        return 1;
+    else return 0;
+}
+int main()
+{
+
+    ll x,y,z,a,b,c,n;
+    cout<<"number of process :"<<endl;
+    while(cin>>n)
+    {
+        ll sm=0;
+        vector<pair<ll,pair<ll,ll> > >v;
+        for(int i=0; i<n; i++)
+        {
+            cout<<"P :"<<i+1<<"\tburst time: ";
+            cin>>y;
+            cout<<" priority :";
+            cin>>z;
+            v.push_back(make_pair(z,make_pair(y,i+1)));
+        }
+        sort(v.begin(),v.end(),cmp);
+        ll sm1=0;
+        for(int i=0; i<n; i++)
+        {
+            cout<<"p"<<v[i].second.second<<"\t"<<"burst time :"<<v[i].second.first<<"\t"<<"waiting time :"<<sm<<"\t"<<"priority :"<<v[i].first<<endl;
+            if(i!=n-1)
+            {
+                sm+=v[i].second.first;
+                sm1+=sm;
+            }
+
+        }
+        cout<<"average waiting time : "<<sm1/(double)n<<endl;
+
+    }
+}
